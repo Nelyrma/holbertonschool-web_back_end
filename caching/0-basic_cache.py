@@ -3,7 +3,8 @@
 BasicCache module
 """
 
-BaseCaching = __import__('base_caching.').BaseCaching
+BaseCaching = __import__('base_caching').BaseCaching
+
 
 class BasicCache(BaseCaching):
     """
@@ -11,13 +12,13 @@ class BasicCache(BaseCaching):
     """
 
     def put(self, key, item):
-        """assign to the self.cache_data dictionary"""
+        """assigns to the self.cache_data dictionary"""
         if key and item:
             self.cache_data[key] = item
 
     def get(self, key):
         """
-        return the value in self.cache_data linked to key
+        returns the value in self.cache_data linked to key
         """
         if key is None or key not in self.cache_data.keys():
             return None
