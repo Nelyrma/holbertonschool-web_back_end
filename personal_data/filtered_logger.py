@@ -10,6 +10,7 @@ from typing import List, Tuple
 
 PII_FIELDS: Tuple = ["name", "email", "phone", "ssn", "password"]
 
+
 def filter_datum(
     fields: List[str],
     redaction: str,
@@ -52,7 +53,7 @@ class RedactingFormatter(logging.Formatter):
 def get_logger() -> logging.Logger:
     """
     create a logger that uses RedactingFormatter"""
-    
+
     logger = logging.getLogger("user_data")
     logger.setLevel(logging.INFO)
 
