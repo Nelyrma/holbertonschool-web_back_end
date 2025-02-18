@@ -89,3 +89,32 @@ def get_db() -> mysql.connector.MySQLConnection:
     )
 
     return connection
+
+
+def main():
+    """
+    retrieves and displays data from the users table with filtered fields
+    """
+    logger = get_logger()
+    db = get_db()
+    cursor = db.cursor()
+
+    try:
+        cursor.execute("SELECT * FROM users")
+        rows = cursor.fetchall()
+
+        for row in rows:
+            log_message = "; ".join(f"{field}={value}"
+                                    for field, value in row.items())
+            logger.info(log_message)
+
+    except Error as e:
+        logger.error(f"Error during data recovery: {e}")
+
+    finally:
+        cursor.close()
+        db.close()
+
+
+if __name__ == "__main__":
+    main()
