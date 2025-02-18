@@ -8,7 +8,7 @@ import os
 from typing import List, Tuple
 
 
-PII_FIELDS: Tuple = ["name", "email", "phone", "ssn", "password"]
+PII_FIELDS: Tuple = ("name", "email", "phone", "ssn", "password")
 
 
 def filter_datum(
@@ -56,13 +56,10 @@ def get_logger() -> logging.Logger:
 
     logger = logging.getLogger("user_data")
     logger.setLevel(logging.INFO)
-
-    # not propagate messages to others logger
     logger.propagate = False
 
     # create a StreamHandler
     stream_handler = logging.StreamHandler()
-    stream_handler.setLevel(logging.INFO)
 
     # using RedactingFormatter to format logs
     formatter = RedactingFormatter(fields=PII_FIELDS)
