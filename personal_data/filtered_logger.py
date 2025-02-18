@@ -4,7 +4,7 @@ filtered logger module
 """
 import logging
 import re
-import sys
+import os
 from typing import List, Tuple
 
 
