@@ -17,7 +17,7 @@ def filter_datum(
     """
     for field in fields:
         # built a regex for fields
-        pattern = r'(' + '|'.join(fields) + rf'){separator}[^{separator}]+'
+        pattern = r"(?<={}=)[^{}]+(?={})".format(field, separator, separator)
         # replace the fields values with the redaction
-        message = re.sub(pattern, rf'\1{separator}{redaction}', message)
+        message = re.sub(pattern, redaction, message)
     return message
