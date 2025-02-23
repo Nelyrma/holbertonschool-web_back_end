@@ -8,9 +8,8 @@ from models.user import User
 
 class BasicAuth(Auth):
     """ Basic authentification class """
-    def decode_base64_authorization_header(
-        self, base64_authorization_header: str) -> str:
-        """ Returns the decoded value of base64_authorization_header """
+    class BasicAuth:
+    def decode_base64_authorization_header(self, base64_authorization_header: str) -> str:
         if base64_authorization_header is None:
             return None
         if not isinstance(base64_authorization_header, str):
