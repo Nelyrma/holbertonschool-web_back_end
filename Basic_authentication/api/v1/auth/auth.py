@@ -4,9 +4,8 @@ from typing import List, TypeVar
 from flask import request
 
 
-class Auth():
-    """ Auth class """
-
+class Auth:
+    """ Authentication class """
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """Return True if the path is not in
         the list of strings excluded_path
