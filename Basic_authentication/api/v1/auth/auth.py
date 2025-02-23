@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """ Module of authentification """
-from typing import List
+from typing import List, TypeVar
 from flask import request
 
 
 class Auth():
-    """ Authentication class """
+    """ Auth class """
 
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """Return True if the path is not in
@@ -25,3 +25,13 @@ class Auth():
         if path in excluded_paths:
             return False
         return True
+
+    def authorization_header(self, request=None) -> str:
+        """ Return None or value of the header request Authorization """
+        if request is None or "Authorization" not in request.headers.keys():
+            return None
+        return request.headers["Authorization"]
+
+    def current_user(self, request=None) -> TypeVar('User'):
+        """ Retutn None """
+        return None
