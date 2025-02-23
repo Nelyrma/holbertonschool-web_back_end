@@ -8,17 +8,27 @@ from models.user import User
 
 class BasicAuth(Auth):
     """ Basic authentification class """
-    class BasicAuth:
-    def decode_base64_authorization_header(self, base64_authorization_header: str) -> str:
-        if base64_authorization_header is None:
+    def extract_base64_authorization_header(
+            self, authorization_header: str) -> str:
+        """
+        Returns the Base64 part of the Authorization header
+        for a Basic Authentication
+        """
+        if (authorization_header is None or
+                type(authorization_header) is not str or
+                authorization_header[0:6] != "Basic "):
             return None
-        if not isinstance(base64_authorization_header, str):
+
+        return authorization_header[6:]
+
+    def decode_base64_authorization_header(
+            self,base64_authorization_header: str) -> str:
+        """ Returns the decoded value of base64_authorization_header """
+        if (base64_authorization_header is None or
+                type(base64_authorization_header) is not str):
             return None
+
         try:
-            # Decode the Base64 string
-            decoded_bytes = base64.b64decode(base64_authorization_header)
-            # Convert bytes to UTF-8 string
-            decoded_string = decoded_bytes.decode('utf-8')
-            return decoded_string
+            return base64.b64decode(base64_authorization_header).decode('utf-8')
         except Exception:
             return None
