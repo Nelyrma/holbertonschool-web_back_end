@@ -52,11 +52,9 @@ class DB:
         """
         session = self._session
         try:
-            # Query the users table with supplied arguments
             user = session.query(User).filter_by(**kwargs).first()
             if user is None:
                 raise NoResultFound("No user found with the keyword arguments")
             return user
         except InvalidRequestError as e:
-            # raise an exception if the arguments are incorrects
             raise InvalidRequestError(f"Invalid query arguments: {e}")
