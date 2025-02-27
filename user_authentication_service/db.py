@@ -53,7 +53,7 @@ class DB:
         session = self._session
         try:
             user = session.query(User).filter_by(**kwargs).first()
-            if user is None:
+            if not user:
                 raise NoResultFound("No user found with the keyword arguments")
             return user
         except InvalidRequestError as e:
