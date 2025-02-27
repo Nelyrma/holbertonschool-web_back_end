@@ -54,7 +54,7 @@ class DB:
         try:
             user = session.query(User).filter_by(**kwargs).first()
             if not user:
-                raise NoResultFound("No user found with the keyword arguments")
+                raise NoResultFound
             return user
-        except InvalidRequestError as e:
-            raise InvalidRequestError(f"Invalid query arguments: {e}")
+        except InvalidRequestError:
+            raise
