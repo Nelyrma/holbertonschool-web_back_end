@@ -2,7 +2,7 @@
 """Create a Flask app"""
 
 from auth import Auth
-from flask import Flask, request, jsonify, abort
+from flask import Flask, request, jsonify, abort, redirect
 
 AUTH = Auth()
 
@@ -52,6 +52,18 @@ def login() -> str:
         return response
     else:
         abort(401)
+
+
+@app.route('/sessions', methods=['DELETE'], strict_slashes=False)
+def logout() -> str:
+    """logout function"""
+    session_id = request.cookies.get("session_id")
+    try:
+        user = AUTH.get_user_from_session_id(session_id)
+        AUTH.destroy_session(user.id)
+        return redirect("http://localhost:5000/", 302)
+    except Exception:
+        abort(403)
 
 
 if __name__ == "__main__":
