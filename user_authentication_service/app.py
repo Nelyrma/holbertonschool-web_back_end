@@ -20,20 +20,17 @@ def welcome():
 def users():
     """implement the POST /users route
     """
-    # exctract form data
     email = request.form.get("email")
     password = request.form.get("password")
 
-    # check that email and password fields are present
     if not email or not password:
         return jsonify({"message": "Missing email or password"}), 400
 
     try:
-        # register a new user
         new_user = AUTH.register_user(email, password)
-        return jsonify({"email": new_user.email, "message": "user created"}), 200
+        return jsonify({"email": new_user.email,
+                        "message": "user created"}), 200
     except ValueError as e:
-        # case where the email is already registered
         return jsonify({"message": "email already registered"}), 400
 
 
