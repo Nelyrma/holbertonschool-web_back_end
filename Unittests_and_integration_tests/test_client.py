@@ -62,6 +62,7 @@ class TestGithubOrgClient(unittest.TestCase):
                 client = GithubOrgClient("google")
 
                 result = client.public_repos()
+                result = client.public_repos()
 
                 expected_result = ["hello", "world"]
                 self.assertEqual(result, expected_result)
