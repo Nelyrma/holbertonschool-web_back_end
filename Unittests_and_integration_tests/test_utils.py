@@ -4,7 +4,7 @@
 import unittest
 from parameterized import parameterized
 from typing import Mapping, Sequence, Any
-from utils import access_nested_map
+from utils import access_nested_map, get_json, memoize
 
 
 class TestAccessNestedMap(unittest.TestCase):
@@ -25,7 +25,9 @@ class TestAccessNestedMap(unittest.TestCase):
         ({}, ("a",)),
         ({"a": 1}, ("a", "b")),
     ])
-    def test_access_nested_map_exception(self, nested_map, path, expected):
+    def test_access_nested_map_exception(self, nested_map: Mapping,
+                                         path: Sequence,
+                                         expected: Any) -> None:
         """test that a KeyError is raised"""
         with self.assertRaises(KeyError) as error:
             access_nested_map(nested_map, path)
