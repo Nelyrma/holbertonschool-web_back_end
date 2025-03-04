@@ -37,15 +37,14 @@ class TestGetJson(unittest.TestCase):
     """TestGetJson class
     """
     @parameterized.expand([
-        ("http://example.com", {"payload": True})
-        ("http://holberton.io", {"payload": False})
+        ("http://example.com", {"payload": True}),
+        ("http://holberton.io", {"payload": False}),
     ])
     def test_get_json(self, test_url, test_payload):
         """test that a method returns the expected result
         """
         mock_response = Mock()
         mock_response.json.return_value = test_payload
-        mock_get.return_value = mock_response
 
         with patch("utils.requests.get", return_value=mock_response
                    ) as mock_get:
