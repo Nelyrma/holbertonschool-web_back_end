@@ -19,3 +19,21 @@ class Cache:
         self._redis.set(key, data)
 
         return key
+
+    def get(self, key: str, fn: Optional[Callable] = None) \
+            -> Optional[Union[str, bytes, int, float]]:
+        """recover data from Redis"""
+        data = self._redis.get(key)
+        if data is None:
+            return None
+        if fn:
+            return fn(data)
+        return data
+
+    def get_str(self, key: str) -> Optional[str]:
+        """use get with a conversion function in UTF-8 string"""
+        return self.get(key, lambda value: value.decode("utf-8"))
+
+    def get_int(self, key: str) -> Optional[int]:
+        """use get with a conversion function in integer"""
+        return self.get(key, fn=int)
