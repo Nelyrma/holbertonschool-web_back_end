@@ -32,10 +32,10 @@ class Cache:
 
         return data
 
-    def get_str(self, key: str) -> Optional[str]:
+    def get_str(self, key: str) -> str:
         """use get with a conversion function in UTF-8 string"""
         return self.get(key, lambda value: value.decode("utf-8"))
 
-    def get_int(self, key: str) -> Optional[int]:
+    def get_int(self, key: str) -> int:
         """use get with a conversion function in integer"""
         return self.get(key, int)
