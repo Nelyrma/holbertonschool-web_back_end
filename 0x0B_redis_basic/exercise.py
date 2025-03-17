@@ -21,13 +21,15 @@ class Cache:
         return key
 
     def get(self, key: str, fn: Optional[Callable] = None) \
-            -> Optional[Union[str, bytes, int, float]]:
+            -> Union[str, bytes, int, float]:
         """recover data from Redis"""
         data = self._redis.get(key)
         if data is None:
             return None
+
         if fn:
-            return fn(data)
+            data = fn(data)
+
         return data
 
     def get_str(self, key: str) -> Optional[str]:
@@ -36,4 +38,4 @@ class Cache:
 
     def get_int(self, key: str) -> Optional[int]:
         """use get with a conversion function in integer"""
-        return self.get(key, fn=int)
+        return self.get(key, int)
