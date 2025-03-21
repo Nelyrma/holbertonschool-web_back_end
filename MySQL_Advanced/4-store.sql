@@ -12,4 +12,4 @@ BEGIN
     WHERE item_id = NEW.item_id;
 END //
 
-DELIMITER;
+DELIMITER ;
