@@ -1,9 +1,8 @@
--- Script that creates a trigger that decrease
--- the quantity of an item after adding a new order
--- Create the trigger
+-- Create a trigger that decreases the quantity of an item
+-- After adding an new order
 DELIMITER //
 
-CREATE TRIGGER decrease AFTER INSERT
+CREATE TRIGGER after_order_insert AFTER INSERT
 ON orders
 FOR EACH ROW
 BEGIN
