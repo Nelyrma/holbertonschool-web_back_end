@@ -2,10 +2,10 @@
 -- ranked by their longevity
 SELECT
     band_name,
-    (IFNULL(split, 2025) - formed) AS LIFESPAN
+    (IFNULL(split,  YEAR(CURDATE())) - formed) AS lifespan
 FROM
     metal_bands
 WHERE
     style LIKE '%Glam rock%'
 ORDER BY
-    LIFESPAN DESC;
+    lifespan DESC;
