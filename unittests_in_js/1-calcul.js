@@ -11,6 +11,8 @@ function calculateNumber(a, b) {
           return 'Error';
         }
         return roundedA / roundedB;
+      } else {
+        throw new Error('Invalid type');
       }
     }
 
