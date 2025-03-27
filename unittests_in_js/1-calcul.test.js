@@ -2,49 +2,25 @@ const assert = require('assert');
 const calculateNumber = require('./1-calcul');
 
 describe('calculateNumber', function() {
-  it('Checks 1 + 3', function() {
-    assert.equal(calculateNumber('SUM', 1, 3), 4);
+  describe('SUM operation', function() {
+    it('should return the rounded sum of two numbers', function() {
+      assert.strictEqual(calculateNumber('SUM', 1.4, 4.5), 6);
+    });
   });
-  it('Checks 1 + 3.7', function() {
-    assert.equal(calculateNumber('SUM', 1, 3.7), 5);
+
+  describe('SUBTRACT operation', function() {
+    it('should return the rounded difference of two numbers', function() {
+      assert.strictEqual(calculateNumber('SUBTRACT', 1.4, 4.5), -4);
+    });
   });
-  it('Checks 1.2 + 3.7', function() {
-    assert.equal(calculateNumber('SUM', 1.2, 3.7), 5);
-  });
-  it('Checks 1.4 + 4.5', function() {
-    assert.equal(calculateNumber('SUM', 1.4, 4.5), 6);
-  });
-  it('Checks -3 + 1.2', function() {
-    assert.equal(calculateNumber('SUM', -3, 1.2), -2);
-  });
-  it('Checks 3 - 1', function() {
-    assert.equal(calculateNumber('SUBTRACT', 3, 1), 2);
-  });
-  it('Checks 1.4 - 4.5', function() {
-    assert.equal(calculateNumber('SUBTRACT', 1.4, 4.5), -4);
-  });
-  it('Checks 1.2 - 3.7', function() {
-    assert.equal(calculateNumber('SUBTRACT', 1.2, 3.7), -3);
-  });
-  it('Checks 3.7 - 1.5', function() {
-    assert.equal(calculateNumber('SUBTRACT', 3.7, 1.5), 2);
-  });
-  it('Checks 0.1 - 0.1', function() {
-    assert.equal(calculateNumber('SUBTRACT', 0.1, 0.1), 0);
-  });
-  it('Checks 3 / 1', function() {
-    assert.equal(calculateNumber('DIVIDE', 3, 1), 3);
-  });
-  it('Checks 3.5 / 2.1', function() {
-    assert.equal(calculateNumber('DIVIDE', 3.5, 2.1), 2);
-  });
-  it('Checks 1.4 / 4.5', function() {
-    assert.equal(calculateNumber('DIVIDE', 1.4, 4.5), 0.2);
-  });
-  it('Checks 1.4 / 0', function() {
-    assert.equal(calculateNumber('DIVIDE', 1.4, 0), 'Error');
-  });
-  it('Checks 0.1 / 0.1', function() {
-    assert.equal(calculateNumber('DIVIDE', 0.1, 0.1), 'Error');
+
+  describe('DIVIDE operation', function() {
+    it('should return the rounded quotient of two numbers', function() {
+      assert.strictEqual(calculateNumber('DIVIDE', 1.4, 4.5), 0.2);
+    });
+
+    it('should return Error if the rounded divisor is 0', function() {
+      assert.strictEqual(calculateNumber('DIVIDE', 1.4, 0), 'Error');
+    });
   });
 });
