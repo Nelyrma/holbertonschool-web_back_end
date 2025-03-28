@@ -1,5 +1,5 @@
 {
-  "name": "0x13-unittests_in_js",
+  "name": "unittests_in_js",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,7 +9,7 @@
       "sinon": "^15.0.3"
   },
   "scripts": {
-      "test": "mocha"
+      "test": "./node_modules/mocha/bin/mocha"
   },
   "author": "",
   "license": "ISC"
